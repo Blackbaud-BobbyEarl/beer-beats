@@ -2,56 +2,73 @@
 
 (function () {
     'use strict';
-    
-    var genreStyleMapping = {};
-    
-    genreStyleMapping['Country'] = 95;
-    genreStyleMapping['Rock'] = 42;
-    genreStyleMapping['Rap'] = 100;
-    genreStyleMapping['Pop'] = 119;
-    genreStyleMapping['Jazz'] = 58;
-    genreStyleMapping['Blues'] = 25;
-    genreStyleMapping['Classical'] = 2;
-    genreStyleMapping['Dance'] = 93;
-    genreStyleMapping['Electronic'] = 77;
-    genreStyleMapping['EasyListening'] = 105;
-    
 
     function shuffleArray(array) {
-        for (var i = array.length - 1; i > 0; i--) {
-            var j = Math.floor(Math.random() * (i + 1));
-            var temp = array[i];
+        var i,
+            j,
+            temp;
+        for (i = array.length - 1; i > 0; i = i - 1) {
+            j = Math.floor(Math.random() * (i + 1));
+            temp = array[i];
             array[i] = array[j];
             array[j] = temp;
         }
         return array;
     }
     
+    function getRandomStyleId() {
+        return Math.floor(Math.random() * (170)) + 1;
+    }
+    
     function getStyleIdFromGenre(genre) {
         genre = genre.trim();
-        return genreStyleMapping[genre];
+        if (genre.indexOf('country') > -1) {
+            return 95;
+        } else if (genre.indexOf('rock') > -1) {
+            return 42;
+        } else if (genre.indexOf('rap') > -1) {
+            return 100;
+        } else if (genre.indexOf('pop') > -1) {
+            return 119;
+        } else if (genre.indexOf('jazz') > -1) {
+            return 58;
+        } else if (genre.indexOf('blues') > -1) {
+            return 25;
+        } else if (genre.indexOf('classical') > -1) {
+            return 2;
+        } else if (genre.indexOf('dance') > -1) {
+            return 93;
+        } else if (genre.indexOf('electronic') > -1) {
+            return 77;
+        } else if (genre.indexOf('easy') > -1) {
+            return 105;
+        } else {
+            return getRandomStyleId();
+        }
     }
     
     function CompareService(BeerService) {
         var compare = {};
         
-        compare.getBeersForGenre = function(genre) {
+        compare.getBeersForGenre = function (genre) {
             var styleId;
             
             if (genre && genre.length > 0) {
                 styleId = getStyleIdFromGenre(genre[0]);
             } else {
-                styleId = Math.floor(Math.random() * (170)) + 1;
+                styleId = getRandomStyleId();
             }
             
             return BeerService.getBeersByStyleId(styleId).then(function (result) {
                 var beerList = result.data,
                     length = beerList.length;
-                if (length > 5) {
-                    beerList = shuffleArray(beerList);
+                if (beerList) {
+                    if (length > 5) {
+                        beerList = shuffleArray(beerList);
+                    }
+                    beerList.splice(5, length - 5);
+                    return beerList;
                 }
-                beerList.splice(5, length - 5);
-                return beerList;
             });
         };
         
