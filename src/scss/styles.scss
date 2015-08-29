@@ -34,7 +34,11 @@ h1, h2, h3, h4, h5, h6 {
 
     .navbar-brand {
         color: #fff;
-        font-family: georgia;
+        font-family: "Oswald", sans-serif;
+        overflow: hidden;
+        height: auto;
+        padding-bottom: 9px;
+
         .fa-circle {
             color: $brand-warning;
         }
@@ -84,7 +88,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .checkin-results {
     .media-description {
-        height: 100px;
+        max-height: 66px;
         overflow: hidden;
     }
 }
