@@ -6,7 +6,10 @@
         var beerService = {};
 
         beerService.getBeerById = function (id) {
-            return $http.get(BeerProxy + encodeURIComponent(BeerApiUrl + 'beer/' + id + '?key=' + BeerApiKey)).then(function (result) {
+            console.log(BeerApiUrl + 'beer/' + id + '?key=' + BeerApiKey);
+            var url = BeerProxy + encodeURIComponent(BeerApiUrl + 'beer/' + id + '?key=' + BeerApiKey);
+            console.log("Get beer: ", url);
+            return $http.get(url).then(function (result) {
                 return result.data;
             });
         };

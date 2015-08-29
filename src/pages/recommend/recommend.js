@@ -21,6 +21,11 @@
                     if (result.data && result.data.style && result.data.style.id) {
                         CompareService.getGenresForBeer(result.data.style.id).then(function (result) {
                             vm.results = result;
+                            var item = result.tracks.items[0];
+                            vm.showcase = {
+                                thumbnail: item.album.images[0].url,
+                                title: item.name
+                            };
                         }, onError);
                     }
                 }, onError);
