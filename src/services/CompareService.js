@@ -21,7 +21,10 @@
     }
 
     function getRandomGenre() {
-        return 'blues';
+        var arr = ['blues', 'country', 'rock', 'rap', 'pop', 'jazz', 'blues', 'classical', 'dance-pop', 'electronic', 'easy+listening'];
+        var length = arr.length - 1;
+        var i = Math.floor(Math.random() * length) + 1;
+        return arr[i];
     }
 
     function getStyleIdFromGenre(genre) {
@@ -110,25 +113,18 @@
         var compare = {};
 
         compare.getGenresForBeer = function (styleId) {
-            // Get a list of songs based on a beer ID.
-            // First, get the beer.
-            /*
             var deferred = $q.defer();
-            BeerService.getBeerById(beer).then(function (data) {
-                console.log("Beer! ", data);
+            var genre = getGenreFromStyleId(styleId);
+            MusicService.getTracksByGenre(genre).then(function (data) {
+                var length = data.tracks.items.length;
+                if (data.tracks.items) {
+                    if (length > 5) {
+                        data.tracks.items = shuffleArray(data.tracks.items);
+                        data.tracks.items.splice(5, length - 5);
+                    }
+                }
                 deferred.resolve(data);
             });
-            return deferred.promise;
-            */
-            var deferred = $q.defer();
-            //BeerService.getBeerById(beer).then(function (data) {
-                //console.log("Beer! ", data);
-                var genre = getGenreFromStyleId(styleId);
-                MusicService.getTracksByGenre(genre).then(function (data) {
-                    console.log("Tracks! ", data);
-                    deferred.resolve(data);
-                });
-            //});
             return deferred.promise;
         };
 
@@ -142,7 +138,6 @@
             }
 
             return BeerService.getBeersByStyleId(styleId).then(function (result) {
-                console.log("getBeersForGenre:", result);
                 var beerList = result.data,
                     length = beerList.length;
                 if (beerList) {
