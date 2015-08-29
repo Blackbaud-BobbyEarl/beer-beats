@@ -29,10 +29,13 @@
                             var item = result.tracks.items[0];
                             vm.results = result;
                             vm.loading = false;
+                            console.log(item);
                             vm.showcase = {
                                 thumbnail: item.album.images[0].url,
-                                title: item.name
+                                title: item.name,
+                                artist: item.artists[0].name
                             };
+                            console.log(vm.showcase);
                         }, onError);
                     }
                 }, onError);
