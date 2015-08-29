@@ -29,10 +29,16 @@
             });
         };
         
+        beerService.searchBeers = function (query) {
+            return $http.get(BeerProxy + encodeURIComponent(BeerApiUrl + 'search?q=' + query + '&type=beer&key=' + BeerApiKey)).then(function (result) {
+                return result.data;
+            });
+        };
+        
         return beerService;
     }
     
-     BeerService.$inject = [
+    BeerService.$inject = [
         'BeerApiUrl',
         'BeerApiKey',
         'BeerProxy',
