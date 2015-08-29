@@ -29,5 +29,3 @@ bower_components
 .sass-cache
 build
 tmp
-
-tmp/templates.js
