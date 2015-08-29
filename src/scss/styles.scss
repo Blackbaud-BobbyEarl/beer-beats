@@ -12,6 +12,10 @@ $navbar-default-bg: #fff;
 @import '../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap';
 @import '../../bower_components/font-awesome/scss/font-awesome';
 
+body {
+  background: #FFF;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: "Oswald", sans-serif;
     color: $brand-warning;
@@ -21,70 +25,32 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 20px;
 }
 
+nav {
+  margin: 40px 0;
+}
 
-#header {
-    background-color: $brand-primary;
-    margin: 0;
-    border: 0;
-    border-radius: 0;
+nav h1 {
+  margin: 0;
+  padding: 0;
+}
 
-    h1 {
-        font-size: 1.3em;
-        font-weight: normal;
-    }
+nav h1 img {
+  max-width: 100px;
+}
 
-    .navbar-brand {
-        color: #fff;
-        font-family: "Oswald", sans-serif;
-        overflow: hidden;
-        height: auto;
-        padding-bottom: 9px;
+nav a:hover,
+nav a:focus {
+  text-decoration: none;
+}
 
-        .fa-circle {
-            color: $brand-warning;
-        }
-    }
+nav .fa-headphones {
+  color: rgba(0, 0, 0, .5);
+}
 
-    .navbar-toggle {
-        border: 0;
-        .icon-bar {
-            background-color: #fff;
-        }
-        &:hover,
-        &:focus,
-        &:active {
-            background-color: transparent;
-        }
-    }
-
-    .navbar-collapse {
-        border: 0;
-        box-shadow: none;
-    }
-
-    li > a {
-      color: lighten($brand-primary, 35%);
-    }
-
-    li.active > a {
-        background-color: darken($brand-primary, 10%);
-    }
-
-    li > a:focus,
-    li > a:hover {
-      color: lighten($brand-primary, 50%);
-    }
-
-    .nav > li > a.avatar {
-      padding: 10px 15px;
-
-      img {
-        max-height:30px;
-        width:auto;
-        vertical-align:middle;
-      }
-    }
-
+.avatar {
+  background: rgba(251, 251, 251, .6);
+  display: block;
+  padding: 7px;
 }
 
 .checkin-results {

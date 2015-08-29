@@ -13,7 +13,6 @@
 
         service.setUser = function (user) {
             localStorageService.set('user', user);
-            console.log('broadcasting');
             $rootScope.$broadcast('user:updated', user);
         };
 

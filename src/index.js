@@ -39,6 +39,7 @@
     function MainController($scope, UserService) {
         var vm = this;
         vm.user = UserService.getUser();
+        vm.logout = UserService.logout;
         $scope.$on('user:updated', function (event, data) {
             vm.user = UserService.getUser();
         });
