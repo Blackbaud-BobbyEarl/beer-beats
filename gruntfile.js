@@ -2,7 +2,7 @@
 
 module.exports = function (grunt) {
     'use strict';
-    
+
     grunt.initConfig({
         buildPath: grunt.option('buildpath') || 'build',
         concat_sourcemap: {
@@ -13,6 +13,7 @@ module.exports = function (grunt) {
             libs: {
                 files: {
                     '<%= buildPath %>/js/libs.js': [
+                        'bower_components/oauth-js/dist/oauth.min.js',
                         'bower_components/jquery/dist/jquery.js',
                         'bower_components/bootstrap/dist/js/bootstrap.min.js',
                         'bower_components/angular/angular.js',
@@ -83,14 +84,14 @@ module.exports = function (grunt) {
             }
         }
     });
-    
+
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-concat-sourcemap');
     grunt.loadNpmTasks('grunt-html2js');
-    
+
     grunt.registerTask('default', ['html2js', 'concat_sourcemap', 'sass', 'copy']);
     grunt.registerTask('build', ['default']);
     grunt.registerTask('buildfromsrc', ['copy:dist', 'build']);
