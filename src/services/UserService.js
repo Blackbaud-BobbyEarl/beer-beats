@@ -2,9 +2,15 @@
 (function () {
     'use strict';
 
-    function UserService($q, localStorageService) {
+    function UserService($q, $state, localStorageService) {
         var service = {},
             Transaction = Parse.Object.extend('Transaction');
+
+        service.logout = function () {
+            console.log('Logging out!');
+            service.setUser('');
+            $state.go('login');
+        };
 
         service.setUser = function (user) {
             localStorageService.set('user', user);
@@ -76,6 +82,7 @@
 
     UserService.$inject = [
         '$q',
+        '$state',
         'localStorageService'
     ];
 

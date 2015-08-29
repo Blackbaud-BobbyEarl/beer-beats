@@ -24,3 +24,13 @@ body {
 .panel-spotify {
 
 }
+
+.nav > li > a.avatar {
+  padding: 10px 15px;
+
+  img {
+    max-height:30px;
+    width:auto;
+    vertical-align:middle;
+  }
+}

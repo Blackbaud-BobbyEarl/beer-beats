@@ -1,7 +1,9 @@
 <h3>{{ userCtrl.user.name }}</h3>
 
 <p>
-  <img ng-src="{{ userCtrl.user.avatar }}" />
+  <button type="button" ng-click="userCtrl.logout()" class="btn btn-primary">
+    Logout
+  </button>
 </p>
 
 <p ng-hide="userCtrl.transactions" class="alert alert-info">

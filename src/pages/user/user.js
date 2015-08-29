@@ -6,6 +6,7 @@
         var vm = this;
         vm.user = UserService.getUser();
         vm.transactions = UserService.getTransactionsByUser();
+        vm.logout = UserService.logout;
     }
 
     UserPageController.$inject = [

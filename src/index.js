@@ -36,6 +36,11 @@
         }
     }
 
+    function MainController(UserService) {
+        var vm = this;
+        vm.user = UserService.getUser();
+    }
+
     Config.$inject = [
         '$locationProvider',
         '$stateProvider',
@@ -47,8 +52,12 @@
         'UserService'
     ];
 
+    MainController.$inject = [
+        'UserService'
+    ];
+
     angular.module('singingbeer', ['ui.bootstrap', 'ui.router', 'singingbeer.templates', 'LocalStorageModule'])
         .config(Config)
-        .controller('MainController', angular.noop)
+        .controller('MainController', MainController)
         .run(Run);
 }());
