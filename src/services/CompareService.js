@@ -20,6 +20,10 @@
         return Math.floor(Math.random() * (170)) + 1;
     }
 
+    function getRandomGenre() {
+        return 'blues';
+    }
+
     function getStyleIdFromGenre(genre) {
         genre = genre.trim();
         if (genre.indexOf('country') > -1) {
@@ -47,11 +51,85 @@
         }
     }
 
-    function CompareService(BeerService, MusicService) {
+    function getGenreFromStyleId(styleId) {
+        var genre;
+        if (typeof styleId === "string") {
+            styleId = styleId.trim();
+        }
+
+        switch (styleId) {
+
+            case 95:
+            genre = 'country';
+            break;
+
+            case 42:
+            genre = 'rock';
+            break;
+
+            case 100:
+            genre = 'rap';
+            break;
+
+            case 119:
+            genre = 'pop';
+            break;
+
+            case 58:
+            genre = 'jazz';
+            break;
+
+            case 25:
+            genre = 'blues';
+            break;
+
+            case 2:
+            genre = 'classical';
+            break;
+
+            case 93:
+            genre = 'dance';
+            break;
+
+            case 77:
+            genre = 'electronic';
+            break;
+
+            case 105:
+            genre = 'easy';
+            break;
+
+            default:
+            genre = getRandomGenre();
+            break;
+        }
+        return genre;
+    }
+
+    function CompareService(BeerService, MusicService, $q) {
         var compare = {};
 
-        compare.getGenresForBeer = function (beer) {
-            return;
+        compare.getGenresForBeer = function (styleId) {
+            // Get a list of songs based on a beer ID.
+            // First, get the beer.
+            /*
+            var deferred = $q.defer();
+            BeerService.getBeerById(beer).then(function (data) {
+                console.log("Beer! ", data);
+                deferred.resolve(data);
+            });
+            return deferred.promise;
+            */
+            var deferred = $q.defer();
+            //BeerService.getBeerById(beer).then(function (data) {
+                //console.log("Beer! ", data);
+                var genre = getGenreFromStyleId(styleId);
+                MusicService.getTracksByGenre(genre).then(function (data) {
+                    console.log("Tracks! ", data);
+                    deferred.resolve(data);
+                });
+            //});
+            return deferred.promise;
         };
 
         compare.getBeersForGenre = function (genre) {
@@ -82,7 +160,8 @@
 
     CompareService.$inject = [
         'BeerService',
-        'MusicService'
+        'MusicService',
+        '$q'
     ];
 
     angular.module('singingbeer')

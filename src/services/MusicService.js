@@ -29,6 +29,15 @@
             return deferred.promise;
         };
 
+        service.getTracksByGenre = function (genre) {
+            var deferred = $q.defer();
+            console.log("Requesting tracks for genre ", genre);
+            $http.get('//api.spotify.com/v1/search?q=genre:' + encodeURIComponent(genre) + '&type=track').success(function (res) {
+                deferred.resolve(res);
+            });
+            return deferred.promise;
+        };
+
         return service;
 
     }
