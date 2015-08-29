@@ -4,9 +4,9 @@
 
     function MusicService($http, $q) {
         var service = {};
-        service.connect = function () {
+        service.search = function (query) {
             var deferred = $q.defer();
-            $http.get('api/music.json').success(function (res) {
+            $http.get('//api.spotify.com/v1/search?q=' + encodeURIComponent(query) + '&type=album,artist,playlist,track').success(function (res) {
                 deferred.resolve(res);
             });
             return deferred.promise;

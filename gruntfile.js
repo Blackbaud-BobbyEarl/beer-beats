@@ -40,6 +40,13 @@ module.exports = function (grunt) {
                     cwd: 'src',
                     src: ['index.html'],
                     dest: '<%= buildPath %>/'
+                },
+                {
+                    expand: true,
+                    dot: true,
+                    cwd: 'bower_components/font-awesome',
+                    src: ['fonts/*.*'],
+                    dest: '<%= buildPath %>/'
                 }]
             }
         },
