@@ -6,28 +6,52 @@
   </button>
 </p>
 
-<p ng-hide="userCtrl.transactions.length > 0" class="alert alert-info">
+<div ng-show="userCtrl.loading">
+    <i class="fa fa-3x fa-spin fa-spinner text-primary"></i>
+</div>
+
+<p ng-hide="userCtrl.loading || userCtrl.transactions.length > 0" class="alert alert-info">
   You haven't matched any beers and beats...yet.
 </p>
 
-<div ng-show="userCtrl.transactions.length > 0">
-    Recent Beer and Beat matches
-    <div ng-repeat="transaction in userCtrl.transactions">
-        <div class="row">
-            <div class="col-md-6">
-                <div>Song</div>
-                <div>Id: {{transaction.attributes.song.id}}</div>
-                <div>Name: {{transaction.attributes.song.title}}</div>
-                <div>Artist: {{transaction.attributes.song.artist}}</div>
-                <img class="media-object" alt="" ng-src="{{transaction.attributes.song.thumbnail}}">
+<div ng-show="!userCtrl.loading && userCtrl.transactions.length > 0">
+    <h4>Recent Beer and Beat matches</h4>
+    
+    <div class="row" ng-repeat="transaction in userCtrl.transactions">
+        <div class="col-sm-5">
+            <div class="card text-center">
+                <h3>
+                    <span><i class="fa fa-fw fa-music"></i></span>
+                </h3>
+                <div class="center-block">
+                    <img class="img-circle img-thumbnail" ng-src="{{ transaction.attributes.song.thumbnail }}">
+                    <h4 class="text-center">{{  transaction.attributes.song.title }}</h4>
+                    <h5 class="text-center">{{  transaction.attributes.song.artist }}</h5>
+                </div>
             </div>
-            <div class="col-md-6">
-                <div>Beer</div>
-                <div>Id: {{transaction.attributes.beer.id}} </div>
-                <div>Name: {{transaction.attributes.beer.title}} </div>
-                <div>Description: {{transaction.attributes.beer.description}} </div>
-                <div>Style: {{transactiopn.attributes.beer.style}}</div>
-                <img class="media-object" alt="" ng-src="{{transaction.attributes.beer.thumbnail}}">
+        </div>
+        <div class="col-sm-2" style="text-align: center;">
+            <h3>
+                <span class="hidden-sm hidden-xs"><i class="fa fa-arrows-h fa-3x"></i></span>
+                <span class="hidden-md hidden-lg"><i class="fa fa-arrows-v fa-3x"></i></span>
+            </h3>
+        </div>
+        <div class="col-sm-5">
+            <div class="card text-center">
+                <h3>
+                    <span><i class="fa fa-fw fa-beer"></i></span>
+                </h3>
+                <div class="center-block">
+                    <img class="img-circle img-thumbnail" ng-src="{{  transaction.attributes.beer.thumbnail }}">
+                    <h4>
+                        {{ transaction.attributes.beer.title }}
+                    </h4>
+                    <h5>
+                        <span>
+                            <span>{{ transaction.attributes.beer.style }}</span>
+                        </span>
+                    </h5>
+                </div>
             </div>
         </div>
     </div>
