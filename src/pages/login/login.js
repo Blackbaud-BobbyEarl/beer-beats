@@ -7,7 +7,7 @@
 
         vm.go = function () {
             $state.go('beermatch');
-        }
+        };
 
         vm.login = function () {
             OAuth.popup('facebook').done(function (result) {

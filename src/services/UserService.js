@@ -8,7 +8,7 @@
             localStorageService.set('user', user);
         };
         service.getUser = function () {
-            return localStorageService.get('user')
+            return localStorageService.get('user');
         };
         return service;
     }
