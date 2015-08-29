@@ -11,6 +11,11 @@
                 controller: 'LoginPageController as loginCtrl',
                 templateUrl: 'pages/login/login.html'
             })
+            .state('search-music', {
+                url: '/search-music',
+                controller: 'SearchMusicController as music',
+                templateUrl: 'pages/search-music/search-music.html'
+            })
             .state('beermatch', {
                 url: '/beer',
                 controller: 'BeerMatchController as beerMatchCtrl',
