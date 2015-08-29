@@ -56,7 +56,7 @@
         'UserService'
     ];
 
-    angular.module('singingbeer', ['ui.bootstrap', 'ui.router', 'singingbeer.templates', 'LocalStorageModule'])
+    angular.module('singingbeer', ['ui.bootstrap', 'ui.router', 'singingbeer.templates', 'LocalStorageModule', 'dibari.angular-ellipsis'])
         .config(Config)
         .controller('MainController', MainController)
         .run(Run);

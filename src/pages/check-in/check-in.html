@@ -1,19 +1,17 @@
+<h1>I am...</h1>
 <p>
-  <div class="btn-group">
-     <label class="btn btn-default btn-lg" ng-model="checkin.enjoying" btn-radio="'beer'">I'm drinking a beer</label>
-     <label class="btn btn-default btn-lg" ng-model="checkin.enjoying" btn-radio="'song'">I'm listening to a song</label>
+  <div class="btn-group btn-group-justified">
+     <label class="btn btn-warning" ng-model="checkin.enjoying" btn-radio="'beer'">Drinking a beer</label>
+     <label class="btn btn-warning" ng-model="checkin.enjoying" btn-radio="'song'">Listening to a song</label>
   </div>
 </p>
 
-<p>
-  <input class="form-control input-lg" type="text" placeholder="Which one?" ng-model="checkin.query">
-</p>
-
-<p>
-  <button class="btn btn-primary btn-lg btn-block" type="button" ng-click="checkin.search()">
-    Search
-  </button>
-</p>
+<div class="input-group input-group-lg" style="margin-bottom: 15px;">
+  <input type="text" class="form-control" placeholder="Which one?" ng-model="checkin.query">
+  <span class="input-group-btn">
+    <button class="btn btn-default btn-lg" type="button" ng-click="checkin.search()"><i class="fa fa-search"></i></button>
+  </span>
+</div>
 
 <p ng-show="checkin.searching">
   <i class="fa fa-2x fa-spin fa-spinner"></i>
@@ -23,7 +21,7 @@
   {{ checkin.error }}
 </p>
 
-<div ng-switch="checkin.enjoying">
+<div ng-switch="checkin.enjoying" class="checkin-results">
   <div ng-switch-when="beer" class="list-group">
     <a ng-repeat="beer in checkin.results" href="" class="list-group-item" ng-click="checkin.recommend(beer.id)">
       <div class="media">
@@ -32,7 +30,7 @@
         </div>
         <div class="media-body">
           <h4 class="media-heading">{{ beer.nameDisplay }}</h4>
-          {{ beer.description }}
+          <div data-ng-bind="beer.description" data-ellipsis class="media-description"></div>
         </div>
       </div>
     </a>
