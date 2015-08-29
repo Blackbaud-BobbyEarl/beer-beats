@@ -2,12 +2,13 @@
 (function () {
     'use strict';
 
-    function RecommendController($state, $stateParams, BeerService, MusicService, CompareService) {
+    function RecommendController($state, $stateParams, $timeout, BeerService, MusicService, CompareService) {
 
         var vm = this;
         vm.type = $stateParams.type;
         vm.showcase = {};
         vm.chosenItem = {};
+        vm.loading = false;
 
         // Require type && id
         if (!$stateParams.type || !$stateParams.id) {
@@ -17,10 +18,10 @@
         switch ($stateParams.type) {
             case 'beer':
                 BeerService.getBeerById($stateParams.id).then(function (result) {
-                    console.log("Beer: ", result);
                     if (result.data && result.data.style && result.data.style.id) {
                         CompareService.getGenresForBeer(result.data.style.id).then(function (result) {
                             vm.results = result;
+                            vm.loading = false;
                         }, onError);
                     }
                 }, onError);
@@ -28,15 +29,13 @@
             case 'song':
                 MusicService.getArtistByTrackId($stateParams.id).then(function (result) {
                     if (result.artist.genres && result.artist.genres.length && result.artist.genres.length > 0) {
-                        console.log(result.artist);
                         vm.chosenItem = {
-                            thumbnail: result.track.album.images[2].url,
+                            thumbnail: result.track.album.images[0].url,
                             title: result.track.name,
                             subtitle: result.artist.name
                         };
 
                         CompareService.getBeersForGenre(result.artist.genres[0]).then(function (result) {
-                            console.log("Compare service: ", result);
                             vm.results = result;
                             if (typeof result !== "undefined") {
                                 vm.showcase = {
@@ -45,6 +44,9 @@
                                     style: result[0].style.name,
                                     description: result[0].style.description
                                 };
+                                $timeout(function () {
+                                    vm.loading = false;
+                                });
                             }
                         }, onError);
                     } else {
@@ -62,6 +64,7 @@
     RecommendController.$inject = [
         '$state',
         '$stateParams',
+        '$timeout',
         'BeerService',
         'MusicService',
         'CompareService'
