@@ -1,13 +1,25 @@
-<div class="panel panel-default panel-spotify">
+<div class="panel panel-default panel-spotify">{{music.results | json}}
     <div class="panel-heading">
         <h4 class="panel-title">Search Music</h4>
     </div>
     <div class="panel-body">
         <div class="form-group">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" ng-model="music.query">
             <button class="btn btn-lg btn-block btn-primary" ng-click="music.search()">
                 <i class="fa fa-spotify"></i> Search
             </button>
+        </div>
+        <div ng-if="music.tracks" class="list-group">
+            <a ng-repeat="track in music.tracks.items" href="" class="list-group-item" ng-click="music.compare(track.album.id)">
+                <div class="media">
+                    <div class="media-left">
+                        <img class="media-object" alt="" src="{{track.album.images[2].url}}">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{track.name}}</h4>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>
