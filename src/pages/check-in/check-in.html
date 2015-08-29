@@ -7,7 +7,7 @@
 </p>
 
 <div class="input-group input-group-lg" style="margin-bottom: 15px;">
-  <input type="text" class="form-control" placeholder="Which one?" ng-model="checkin.query">
+  <input type="text" class="form-control" placeholder="What {{ checkin.enjoying }}?" ng-model="checkin.query" ng-enter="checkin.search()">
   <span class="input-group-btn">
     <button class="btn btn-default btn-lg" type="button" ng-click="checkin.search()"><i class="fa fa-search"></i></button>
   </span>
@@ -19,6 +19,10 @@
 
 <p ng-if="checkin.error" class="alert alert-danger">
   {{ checkin.error }}
+</p>
+
+<p class="alert alert-info" ng-show="checkin.searchingNoResults">
+  Unable to locate any results.
 </p>
 
 <div ng-switch="checkin.enjoying" class="checkin-results">

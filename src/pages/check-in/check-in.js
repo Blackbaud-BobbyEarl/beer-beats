@@ -6,6 +6,7 @@
         var vm = this;
 
         vm.searching = false;
+        vm.searchingNoResults = false;
         vm.enjoying = 'beer';
         vm.error = '';
         vm.query = '';
@@ -15,6 +16,7 @@
             vm.error = '';
             vm.results = '';
             vm.searching = true;
+            vm.searchingNoResults = false;
             switch (vm.enjoying) {
                 case 'beer':
                     BeerService.searchBeers(vm.query).then(beerSuccess, beerError);
@@ -34,12 +36,14 @@
 
         function success(results) {
             vm.searching = false;
+            vm.searchingNoResults = !angular.isArray(results) || results.length === 0;
             vm.error = '';
             vm.results = results;
         }
 
         function error(err) {
             vm.searching = false;
+            vm.searchingNoResults = false;
             vm.results = '';
             vm.error = err;
         }

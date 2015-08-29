@@ -59,5 +59,17 @@
     angular.module('singingbeer', ['ui.bootstrap', 'ui.router', 'singingbeer.templates', 'LocalStorageModule', 'dibari.angular-ellipsis'])
         .config(Config)
         .controller('MainController', MainController)
-        .run(Run);
+        .run(Run)
+        .directive('ngEnter', function () {
+            return function (scope, element, attrs) {
+                element.bind('keydown keypress', function (event) {
+                    if (event.which === 13) {
+                        scope.$apply(function () {
+                            scope.$eval(attrs.ngEnter || attrs.ngClick, {$event: event});
+                        });
+                        event.preventDefault();
+                    }
+                });
+            };
+        });
 }());
