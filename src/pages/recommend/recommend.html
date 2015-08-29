@@ -1,13 +1,32 @@
-<div id="match-pane">
-    <h1>We recommend...</h1>
-    <div class="thumbnail">
-        <div class="thumbnail-img" ng-style="background-image: url('{{}}');"></div>
-    </div>
-    <div ng-repeat="beer in recommendCtrl.beers">
-        <div>Id: {{beer.id}}</div>
-        <div>Name: {{beer.name}}</div>
-        <div>Description: {{beer.description}}</div>
-        <div>Style: {{beer.style}}</div>
-        <div>IBU: {{beer.ibu}}</div>
-    </div>
+<p ng-show="recommendCtrl.error" class="alert alert-danger">
+  {{ recommandCtrl.error }}
+</p>
+
+<div ng-switch="recommendCtrl.type">
+  <div ng-switch-when="song" class="list-group">
+    <a ng-repeat="beer in recommendCtrl.results" href="" class="list-group-item" ng-click="recommendCtrl.recommend(beer.id)">
+      <div class="media">
+        <div class="media-left">
+          <img class="media-object" alt="" ng-src="{{ beer.labels.icon }}">
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{ beer.nameDisplay }}</h4>
+          {{ beer.description }}
+        </div>
+      </div>
+    </a>
+  </div>
+  <div ng-switch-when="beer" class="list-group">
+    <a ng-repeat="track in recommendCtrl.results.tracks.items" href="" class="list-group-item" ng-click="recommendCtrl.recommend(track.id)">
+      <div class="media">
+        <div class="media-left">
+          <img class="media-object" alt="" ng-src="{{ track.album.images[2].url }}">
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{ track.name }}</h4>
+          {{ track.artists[0].name }}
+        </div>
+      </div>
+    </a>
+  </div>
 </div>

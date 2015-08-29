@@ -15,11 +15,11 @@
         }
         return array;
     }
-    
+
     function getRandomStyleId() {
         return Math.floor(Math.random() * (170)) + 1;
     }
-    
+
     function getStyleIdFromGenre(genre) {
         genre = genre.trim();
         if (genre.indexOf('country') > -1) {
@@ -46,19 +46,23 @@
             return getRandomStyleId();
         }
     }
-    
-    function CompareService(BeerService) {
+
+    function CompareService(BeerService, MusicService) {
         var compare = {};
-        
+
+        compare.getGenresForBeer = function (beer) {
+            return;
+        };
+
         compare.getBeersForGenre = function (genre) {
             var styleId;
-            
+
             if (genre && genre.length > 0) {
                 styleId = getStyleIdFromGenre(genre[0]);
             } else {
                 styleId = getRandomStyleId();
             }
-            
+
             return BeerService.getBeersByStyleId(styleId).then(function (result) {
                 var beerList = result.data,
                     length = beerList.length;
@@ -71,15 +75,16 @@
                 }
             });
         };
-        
+
         return compare;
     }
-    
+
     CompareService.$inject = [
-        'BeerService'
+        'BeerService',
+        'MusicService'
     ];
-    
+
     angular.module('singingbeer')
         .factory('CompareService', CompareService);
-    
+
 }());
