@@ -31,7 +31,7 @@
         '$urlRouterProvider'
     ];
 
-    angular.module('singingbeer', ['ui.bootstrap', 'ui.router', 'singingbeer.templates'])
+    angular.module('singingbeer', ['ui.bootstrap', 'ui.router', 'singingbeer.templates', 'LocalStorageModule'])
         .config(Config)
         .controller('MainController', angular.noop);
 }());
