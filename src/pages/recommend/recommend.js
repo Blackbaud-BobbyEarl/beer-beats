@@ -2,14 +2,14 @@
 (function () {
     'use strict';
 
-    function BeerMatchController(CompareService, MusicService, $stateParams, $location) {
+    function RecommendController(CompareService, MusicService, $stateParams, $location) {
 
         var vm = this;
         console.log("Params: ", $stateParams);
 
         // Require trackId
         if (!$stateParams.trackId) {
-            $location.path('/search-music');
+            $location.path('/check-in');
         }
 
         // Get album's genre associated with track
@@ -29,7 +29,7 @@
         */
     }
 
-    BeerMatchController.$inject = [
+    RecommendController.$inject = [
         'CompareService',
         'MusicService',
         '$stateParams',
@@ -37,5 +37,5 @@
     ];
 
     angular.module('singingbeer')
-        .controller('BeerMatchController', BeerMatchController);
+        .controller('RecommendController', RecommendController);
 }());

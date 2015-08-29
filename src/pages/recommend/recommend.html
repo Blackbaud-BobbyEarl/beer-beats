@@ -1,0 +1,13 @@
+<div id="match-pane">
+    <h1>We recommend...</h1>
+    <div class="thumbnail">
+        <div class="thumbnail-img" ng-style="background-image: url('{{}}');"></div>
+    </div>
+    <div ng-repeat="beer in recommendCtrl.beers">
+        <div>Id: {{beer.id}}</div>
+        <div>Name: {{beer.name}}</div>
+        <div>Description: {{beer.description}}</div>
+        <div>Style: {{beer.style}}</div>
+        <div>IBU: {{beer.ibu}}</div>
+    </div>
+</div>

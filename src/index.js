@@ -16,15 +16,15 @@
                 controller: 'UserPageController as userCtrl',
                 templateUrl: 'pages/user/user.html'
             })
-            .state('search-music', {
-                url: '/search-music',
-                controller: 'SearchMusicController as music',
-                templateUrl: 'pages/search-music/search-music.html'
+            .state('check-in', {
+                url: '/check-in',
+                controller: 'CheckInController as checkin',
+                templateUrl: 'pages/check-in/check-in.html'
             })
-            .state('beermatch', {
-                url: '/beer/:trackId',
-                controller: 'BeerMatchController as beerMatchCtrl',
-                templateUrl: 'pages/beer/beermatch.html'
+            .state('recommend', {
+                url: '/recommend/:type/:id',
+                controller: 'RecommendController as recommendCtrl',
+                templateUrl: 'pages/recommend/recommend.html'
             });
         OAuth.initialize('fMP572zzDgGOOnxYEMMFKwRo5SI');
         Parse.initialize("CoNi5s1aee6KJlaNZ1YiP0oQKjSWid1czX2vYtUT", "rh46bhFYE9ht50Ld0tYfWzNsho5uPNXdVqzGGF6J");

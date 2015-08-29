@@ -2,7 +2,7 @@
 (function () {
     'use strict';
 
-    function SearchMusicController($location, MusicService) {
+    function CheckInController($location, MusicService) {
         var vm = this;
         vm.query = "";
         vm.search = function () {
@@ -17,12 +17,12 @@
         };
     }
 
-    SearchMusicController.$inject = [
+    CheckInController.$inject = [
         '$location',
         'MusicService'
     ];
 
     angular.module('singingbeer')
-        .controller('SearchMusicController', SearchMusicController);
+        .controller('CheckInController', CheckInController);
 
 }());
