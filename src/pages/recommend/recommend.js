@@ -19,6 +19,12 @@
             case 'beer':
                 BeerService.getBeerById($stateParams.id).then(function (result) {
                     if (result.data && result.data.style && result.data.style.id) {
+                        console.log("getBeer:", result);
+                        vm.chosenItem = {
+                            thumbnail:result.data.labels.large,
+                            title:result.data.name,
+                            subtitle:result.data.style.shortName
+                        };
                         CompareService.getGenresForBeer(result.data.style.id).then(function (result) {
                             var item = result.tracks.items[0];
                             vm.results = result;
