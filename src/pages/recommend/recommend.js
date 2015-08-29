@@ -38,12 +38,14 @@
                         CompareService.getBeersForGenre(result.artist.genres[0]).then(function (result) {
                             console.log("Compare service: ", result);
                             vm.results = result;
-                            vm.showcase = {
-                                thumbnail: result[0].labels.large,
-                                title: result[0].name,
-                                style: result[0].style.name,
-                                description: result[0].style.description
-                            };
+                            if (typeof result !== "undefined") {
+                                vm.showcase = {
+                                    thumbnail: result[0].labels.large,
+                                    title: result[0].name,
+                                    style: result[0].style.name,
+                                    description: result[0].style.description
+                                };
+                            }
                         }, onError);
                     } else {
                         vm.error = 'No genres available.';
