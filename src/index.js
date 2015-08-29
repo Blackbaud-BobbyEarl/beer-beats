@@ -11,6 +11,11 @@
                 controller: 'LoginPageController as loginCtrl',
                 templateUrl: 'pages/login/login.html'
             })
+            .state('user', {
+                url: '/user',
+                controller: 'UserPageController as userCtrl',
+                templateUrl: 'pages/user/user.html'
+            })
             .state('search-music', {
                 url: '/search-music',
                 controller: 'SearchMusicController as music',

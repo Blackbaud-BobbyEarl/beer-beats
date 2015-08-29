@@ -1,0 +1,24 @@
+<h3>{{ userCtrl.user.name }}</h3>
+
+<p>
+  <img ng-src="{{ userCtrl.user.avatar }}" />
+</p>
+
+<p ng-hide="userCtrl.transactions" class="alert alert-info">
+  No transactions for this user.
+</p>
+
+<table class="table table-striped" ng-show="userCtrl.transactions">
+  <thead>
+    <tr>
+      <th>Beer</th>
+      <th>Song</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="transaction in userCtrl.transactions">
+      <td>{{ transaction.beerId }}</td>
+      <td>{{ transaction.songId }}</td>
+    </tr>
+  </tbody>
+</table>
