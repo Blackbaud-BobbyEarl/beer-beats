@@ -6,7 +6,7 @@
         var vm = this;
 
         vm.go = function () {
-            $state.go('beermatch');
+            $state.go('check-in');
         };
 
         vm.login = function () {
