@@ -6,7 +6,7 @@
         var vm = this;
 
         vm.searching = false;
-        vm.enjoying = $stateParams.type || 'beer';
+        vm.enjoying = $stateParams.type || 'song';
         vm.query = $stateParams.query;
         vm.error = '';
         vm.results = '';
