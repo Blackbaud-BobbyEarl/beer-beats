@@ -6,21 +6,29 @@
   </button>
 </p>
 
-<p ng-hide="userCtrl.transactions" class="alert alert-info">
-  No transactions for this user.
+<p ng-hide="userCtrl.transactions.length > 1" class="alert alert-info">
+  You haven't matched any beers and beats...yet.
 </p>
 
-<table class="table table-striped" ng-show="userCtrl.transactions">
-  <thead>
-    <tr>
-      <th>Beer</th>
-      <th>Song</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="transaction in userCtrl.transactions">
-      <td>{{ transaction.beerId }}</td>
-      <td>{{ transaction.songId }}</td>
-    </tr>
-  </tbody>
-</table>
+<div ng-show="userCtrl.transactions.length > 1">
+    Recent Beer and Beat matches
+    <div ng-repeat="transaction in userCtrl.transactions">
+        <div class="row">
+            <div class="col-md-6">
+                <div>Song</div>
+                <div>Id: {{transaction.attributes.song.id}}</div>
+                <div>Name: {{transaction.attributes.song.title}}</div>
+                <div>Artist: {{transaction.attributes.song.artist}}</div>
+                <img class="media-object" alt="" ng-src="{{transaction.attributes.song.thumbnail}}">
+            </div>
+            <div class="col-md-6">
+                <div>Beer</div>
+                <div>Id: {{transaction.attributes.beer.id}} </div>
+                <div>Name: {{transaction.attributes.beer.title}} </div>
+                <div>Description: {{transaction.attributes.beer.description}} </div>
+                <div>Style: {{transactiopn.attributes.beer.style}}</div>
+                <img class="media-object" alt="" ng-src="{{transaction.attributes.beer.thumbnail}}">
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,7 +5,9 @@
     function UserPageController(UserService) {
         var vm = this;
         vm.user = UserService.getUser();
-        vm.transactions = UserService.getTransactionsByUser();
+        UserService.getTransactionsByUser().then(function (result) {
+            vm.transactions = result;
+        });
         vm.logout = UserService.logout;
     }
 
