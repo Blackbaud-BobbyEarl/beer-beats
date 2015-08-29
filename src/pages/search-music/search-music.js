@@ -11,9 +11,9 @@
                 vm.tracks = data.tracks;
             });
         };
-        vm.choose = function (trackId) {
+        vm.compare = function (trackId) {
             console.log("Track ID: ", trackId);
-            $location.path('/beermatch');
+            $location.path('/beer/' + trackId);
         };
     }
 
