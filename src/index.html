@@ -23,7 +23,6 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand" ui-sref="check-in">
-
                             <i class="fa fa-music fa-flip-horizontal"></i> beer-beats
                         </a>
                     </div>
@@ -37,7 +36,7 @@
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li ui-sref-active="active">
+                            <li ui-sref-active="active" ng-show="mainCtrl.user" >
                                 <a ui-sref="user" class="avatar">
                                     <img ng-src="{{ mainCtrl.user.avatar }}" />
                                     {{ mainCtrl.user.name }}

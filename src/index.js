@@ -36,9 +36,12 @@
         }
     }
 
-    function MainController(UserService) {
+    function MainController($scope, UserService) {
         var vm = this;
         vm.user = UserService.getUser();
+        $scope.$on('user:updated', function (event, data) {
+            vm.user = UserService.getUser();
+        });
     }
 
     Config.$inject = [
@@ -53,6 +56,7 @@
     ];
 
     MainController.$inject = [
+        '$scope',
         'UserService'
     ];
 

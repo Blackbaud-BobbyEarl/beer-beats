@@ -2,18 +2,19 @@
 (function () {
     'use strict';
 
-    function UserService($q, $state, localStorageService) {
+    function UserService($q, $state, $rootScope, localStorageService) {
         var service = {},
             Transaction = Parse.Object.extend('Transaction');
 
         service.logout = function () {
-            console.log('Logging out!');
             service.setUser('');
             $state.go('login');
         };
 
         service.setUser = function (user) {
             localStorageService.set('user', user);
+            console.log('broadcasting');
+            $rootScope.$broadcast('user:updated', user);
         };
 
         service.getUser = function () {
@@ -79,7 +80,7 @@
             }, function error(e) {
                 deferred.error(e);
             });
-            
+
             return deferred.promise;
         };
 
@@ -89,6 +90,7 @@
     UserService.$inject = [
         '$q',
         '$state',
+        '$rootScope',
         'localStorageService'
     ];
 
