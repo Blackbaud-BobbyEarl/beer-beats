@@ -74,6 +74,8 @@
                 query.equalTo('song.id');
             }
 
+            query.descending('createdAt');
+
             query.find().then(function success(result) {
                 deferred.resolve(result);
             }, function error(e) {
