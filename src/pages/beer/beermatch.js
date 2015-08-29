@@ -30,7 +30,7 @@
     }
 
     BeerMatchController.$inject = [
-        'BeerService',
+        'CompareService',
         'MusicService',
         '$stateParams',
         '$location'
