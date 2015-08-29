@@ -2,19 +2,8 @@
 (function () {
     'use strict';
 
-    function CheckInController($state, MusicService, BeerService) {
+    function CheckInController($state, BeerService, MusicService) {
         var vm = this;
-        // vm.query = "";
-        // vm.search = function () {
-        //     MusicService.search(vm.query).then(function (data) {
-        //         console.log("Music retrieved: ", data);
-        //         vm.tracks = data.tracks;
-        //     });
-        // };
-        // vm.compare = function (trackId) {
-        //     console.log("Track ID: ", trackId);
-        //     $location.path('/beer/' + trackId);
-        // };
 
         vm.searching = false;
         vm.enjoying = 'beer';
@@ -28,10 +17,10 @@
             vm.searching = true;
             switch (vm.enjoying) {
                 case 'beer':
-                    BeerService.search(vm.query).then(success, error);
+                    BeerService.searchBeers(vm.query).then(beerSuccess, beerError);
                 break;
                 case 'song':
-                    MusicService.search(vm.query).then(success, error);
+                    MusicService.search(vm.query).then(songSuccess, songError);
                 break;
             }
         };
@@ -41,13 +30,12 @@
                 type: vm.enjoying,
                 id: id
             });
-        }
+        };
 
         function success(results) {
             vm.searching = false;
-            vm.results = results;
-            console.log(results);
             vm.error = '';
+            vm.results = results;
         }
 
         function error(err) {
@@ -56,11 +44,28 @@
             vm.error = err;
         }
 
+        function beerSuccess(results) {
+            success(results.data);
+        }
+
+        function songSuccess(results) {
+            success(results);
+        }
+
+        function beerError(err) {
+            error(err);
+        }
+
+        function songError(err) {
+            error(err);
+        }
+
     }
 
 
     CheckInController.$inject = [
         '$state',
+        'BeerService',
         'MusicService'
     ];
 
