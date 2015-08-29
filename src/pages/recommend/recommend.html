@@ -60,7 +60,7 @@
   </div>
 
   <p class="text-center">
-    <button class="btn btn-warning btn-lg btn-excellent" ng-click="recommendCtrl.insertMainRecommendation()">
+    <button class="btn btn-warning btn-lg btn-excellent" ng-click="recommendCtrl.recommendMain(recommendCtrl.chosenItem, recommendCtrl.showcase)">
       <i class="fa fa-thumbs-up"></i> Excellent Recommendation!
     </button>
   </p>
@@ -69,7 +69,7 @@
   <p class="text-muted">Try these other recommendations!</p>
   <div ng-switch="recommendCtrl.type">
     <div ng-switch-when="song" class="list-group">
-      <a ng-repeat="beer in recommendCtrl.results" href="" class="list-group-item" ng-click="recommendCtrl.recommend(beer.id)">
+      <a ng-repeat="beer in recommendCtrl.results" href="" class="list-group-item" ng-click="recommendCtrl.recommendBeerFromSong(beer)">
         <div class="media">
           <div class="media-left">
             <img class="media-object" alt="" ng-src="{{ beer.labels.icon }}">
@@ -82,7 +82,7 @@
       </a>
     </div>
     <div ng-switch-when="beer" class="list-group">
-      <a ng-repeat="track in recommendCtrl.results.tracks.items" href="" class="list-group-item" ng-click="recommendCtrl.recommend(track.id)">
+      <a ng-repeat="track in recommendCtrl.results.tracks.items" href="" class="list-group-item" ng-click="recommendCtrl.recommendSongFromBeer(track)">
         <div class="media">
           <div class="media-left">
             <img class="media-object" alt="" ng-src="{{ track.album.images[2].url }}">
