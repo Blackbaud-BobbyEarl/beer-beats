@@ -10,7 +10,7 @@
             </button>
         </div>
         <div ng-if="music.tracks" class="list-group">
-            <a ng-repeat="track in music.tracks.items" href="" class="list-group-item" ng-click="music.compare(track.album.id)">
+            <a ng-repeat="track in music.tracks.items" href="" class="list-group-item" ng-click="music.compare(track.id)">
                 <div class="media">
                     <div class="media-left">
                         <img class="media-object" alt="" src="{{track.album.images[2].url}}">

@@ -17,7 +17,7 @@
                 templateUrl: 'pages/search-music/search-music.html'
             })
             .state('beermatch', {
-                url: '/beer',
+                url: '/beer/:trackId',
                 controller: 'BeerMatchController as beerMatchCtrl',
                 templateUrl: 'pages/beer/beermatch.html'
             });

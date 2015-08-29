@@ -11,8 +11,8 @@
                 vm.tracks = data.tracks;
             });
         };
-        vm.choose = function (albumId) {
-            console.log("Album ID: ", albumId);
+        vm.choose = function (trackId) {
+            console.log("Track ID: ", trackId);
             $location.path('/beermatch');
         };
     }
