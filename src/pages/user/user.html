@@ -6,11 +6,11 @@
   </button>
 </p>
 
-<p ng-hide="userCtrl.transactions.length > 1" class="alert alert-info">
+<p ng-hide="userCtrl.transactions.length > 0" class="alert alert-info">
   You haven't matched any beers and beats...yet.
 </p>
 
-<div ng-show="userCtrl.transactions.length > 1">
+<div ng-show="userCtrl.transactions.length > 0">
     Recent Beer and Beat matches
     <div ng-repeat="transaction in userCtrl.transactions">
         <div class="row">
