@@ -2,23 +2,70 @@
 (function () {
     'use strict';
 
-    function CheckInController($location, MusicService) {
+    function CheckInController($state, BeerService, MusicService) {
         var vm = this;
-        vm.query = "";
+
+        vm.searching = false;
+        vm.enjoying = 'beer';
+        vm.error = '';
+        vm.query = '';
+        vm.results = '';
+
         vm.search = function () {
-            MusicService.search(vm.query).then(function (data) {
-                console.log("Music retrieved: ", data);
-                vm.tracks = data.tracks;
+            vm.error = '';
+            vm.results = '';
+            vm.searching = true;
+            switch (vm.enjoying) {
+                case 'beer':
+                    BeerService.searchBeers(vm.query).then(beerSuccess, beerError);
+                break;
+                case 'song':
+                    MusicService.search(vm.query).then(songSuccess, songError);
+                break;
+            }
+        };
+
+        vm.recommend = function (id) {
+            $state.go('recommend', {
+                type: vm.enjoying,
+                id: id
             });
         };
-        vm.compare = function (trackId) {
-            console.log("Track ID: ", trackId);
-            $location.path('/beer/' + trackId);
-        };
+
+        function success(results) {
+            vm.searching = false;
+            vm.error = '';
+            vm.results = results;
+        }
+
+        function error(err) {
+            vm.searching = false;
+            vm.results = '';
+            vm.error = err;
+        }
+
+        function beerSuccess(results) {
+            success(results.data);
+        }
+
+        function songSuccess(results) {
+            success(results);
+        }
+
+        function beerError(err) {
+            error(err);
+        }
+
+        function songError(err) {
+            error(err);
+        }
+
     }
 
+
     CheckInController.$inject = [
-        '$location',
+        '$state',
+        'BeerService',
         'MusicService'
     ];
 

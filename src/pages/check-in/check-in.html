@@ -1,25 +1,53 @@
-<div class="panel panel-default panel-spotify">{{music.results | json}}
-    <div class="panel-heading">
-        <h4 class="panel-title">Search Music</h4>
-    </div>
-    <div class="panel-body">
-        <div class="form-group">
-            <input type="text" class="form-control" ng-model="music.query">
-            <button class="btn btn-lg btn-block btn-primary" ng-click="music.search()">
-                <i class="fa fa-spotify"></i> Search
-            </button>
+<p>
+  <div class="btn-group">
+     <label class="btn btn-default btn-lg" ng-model="checkin.enjoying" btn-radio="'beer'">I'm drinking a beer</label>
+     <label class="btn btn-default btn-lg" ng-model="checkin.enjoying" btn-radio="'song'">I'm listening to a song</label>
+  </div>
+</p>
+
+<p>
+  <input class="form-control input-lg" type="text" placeholder="Which one?" ng-model="checkin.query">
+</p>
+
+<p>
+  <button class="btn btn-primary btn-lg btn-block" type="button" ng-click="checkin.search()">
+    Search
+  </button>
+</p>
+
+<p ng-show="checkin.searching">
+  <i class="fa fa-2x fa-spin fa-spinner"></i>
+</p>
+
+<p ng-if="checkin.error" class="alert alert-danger">
+  {{ checkin.error }}
+</p>
+
+<div ng-switch="checkin.enjoying">
+  <div ng-switch-when="beer" class="list-group">
+    <a ng-repeat="beer in checkin.results" href="" class="list-group-item" ng-click="checkin.recommend(beer.id)">
+      <div class="media">
+        <div class="media-left">
+          <img class="media-object" alt="" ng-src="{{ beer.labels.icon }}">
         </div>
-        <div ng-if="music.tracks" class="list-group">
-            <a ng-repeat="track in music.tracks.items" href="" class="list-group-item" ng-click="music.compare(track.id)">
-                <div class="media">
-                    <div class="media-left">
-                        <img class="media-object" alt="" src="{{track.album.images[2].url}}">
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">{{track.name}}</h4>
-                    </div>
-                </div>
-            </a>
+        <div class="media-body">
+          <h4 class="media-heading">{{ beer.nameDisplay }}</h4>
+          {{ beer.description }}
         </div>
-    </div>
+      </div>
+    </a>
+  </div>
+  <div ng-switch-when="song" class="list-group">
+    <a ng-repeat="track in checkin.results.tracks.items" href="" class="list-group-item" ng-click="checkin.recommend(track.id)">
+      <div class="media">
+        <div class="media-left">
+          <img class="media-object" alt="" ng-src="{{ track.album.images[2].url }}">
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{ track.name }}</h4>
+          {{ track.artists[0].name }}
+        </div>
+      </div>
+    </a>
+  </div>
 </div>
