@@ -1,4 +1,4 @@
-/*global angular */
+/*global angular, console */
 (function () {
     'use strict';
 
@@ -20,14 +20,14 @@
             return localStorageService.get('user');
         };
 
-        service.insertTransaction = function (songId, beerId) {
+        service.insertTransaction = function (song, beer) {
             var deferred = $q.defer(),
                 transaction = new Transaction();
 
             transaction.save({
                 userId: service.getUser().id,
-                songId: songId,
-                beerId: beerId
+                song: song,
+                beer: beer
             }).then(function success(result) {
                 deferred.resolve(result);
             }, function error(e) {
@@ -64,17 +64,23 @@
                     'songId'
                 ];
 
-            supportedOptions.forEach(function (option) {
-                if (typeof options[option] !== 'undefined') {
-                    query.equalTo(option, options[option]);
-                }
-            });
+            if (angular.isDefined(options.userId)) {
+                query.equalTo('userId', options.userId);
+            }
+            if (angular.isDefined(options.beerId)) {
+                query.equalTo('beer.id', options.beerId);
+            }
+            if (angular.isDefined(options.songId)) {
+                query.equalTo('song.id');
+            }
 
             query.find().then(function success(result) {
                 deferred.resolve(result);
             }, function error(e) {
                 deferred.error(e);
             });
+            
+            return deferred.promise;
         };
 
         return service;

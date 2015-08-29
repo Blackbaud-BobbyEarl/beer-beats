@@ -1,4 +1,4 @@
-/*global angular */
+/*global angular, console */
 (function () {
     'use strict';
 
@@ -29,7 +29,7 @@
         beerService.getBeersByStyleId = function (styleId) {
             return $http.get(BeerProxy + encodeURIComponent(BeerApiUrl + 'beers/?styleId=' + styleId + '&key=' + BeerApiKey)).then(function (result) {
                 var keep = [];
-                console.log("Data:",result.data);
+                console.log("Data:", result.data);
                 for (var i in result.data.data) {
                     if (result.data.data[i].labels) {
                         keep.push(result.data.data[i]);

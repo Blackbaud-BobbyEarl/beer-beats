@@ -1,10 +1,12 @@
-/*global angular */
+/*global angular, console */
 (function () {
     'use strict';
 
-    function RecommendController($state, $stateParams, $timeout, BeerService, MusicService, CompareService) {
+    function RecommendController($state, $stateParams, $timeout, BeerService, MusicService, CompareService, UserService) {
 
-        var vm = this;
+        var vm = this,
+            beer,
+            beat;
         vm.type = $stateParams.type;
         vm.showcase = {};
         vm.chosenItem = {};
@@ -12,7 +14,7 @@
 
         // Require type && id
         if (!$stateParams.type || !$stateParams.id) {
-            $state.go('checkin');
+            $state.go('check-in');
         }
 
         switch ($stateParams.type) {
@@ -42,14 +44,21 @@
             break;
             case 'song':
                 MusicService.getArtistByTrackId($stateParams.id).then(function (result) {
-                    if (result.artist.genres && result.artist.genres.length && result.artist.genres.length > 0) {
+                    
                         vm.chosenItem = {
                             thumbnail: result.track.album.images[0].url,
                             title: result.track.name,
                             subtitle: result.artist.name
                         };
+                        
+                        beat = {
+                            id: $stateParams.id,
+                            artist: result.artist.name,
+                            thumbnail: result.track.album.images[2].url,
+                            title: result.track.name
+                        };
 
-                        CompareService.getBeersForGenre(result.artist.genres[0]).then(function (result) {
+                        CompareService.getBeersForGenre(result.artist.genres).then(function (result) {
                             vm.results = result;
                             if (typeof result !== "undefined") {
                                 vm.showcase = {
@@ -58,22 +67,38 @@
                                     style: result[0].style.name,
                                     description: result[0].style.description
                                 };
+                                
+                                beer = {
+                                    id: result[0].id,
+                                    thumbnail: result[0].labels.small,
+                                    title: result[0].name,
+                                    style: result[0].style.name,
+                                    description: result[0].style.description
+                                };
+
                                 $timeout(function () {
                                     vm.loading = false;
                                 });
                             }
                         }, onError);
-                    } else {
-                        vm.error = 'No genres available.';
-                    }
+    
                 }, onError);
             break;
         }
+        
+        function onError(err) {
+            vm.error = err;
+        }
+        
+        vm.insertMainRecommendation = function () {
+            UserService.insertTransaction(beat, beer).then(function () {
+                $state.go('user');
+            });
+            
+        };
     }
 
-    function onError(err) {
-        vm.error = err;
-    }
+
 
     RecommendController.$inject = [
         '$state',
@@ -81,7 +106,8 @@
         '$timeout',
         'BeerService',
         'MusicService',
-        'CompareService'
+        'CompareService',
+        'UserService'
     ];
 
     angular.module('singingbeer')

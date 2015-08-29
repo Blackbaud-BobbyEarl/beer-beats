@@ -38,9 +38,9 @@
             <img class="img-circle img-thumbnail" ng-src="{{ recommendCtrl.showcase.thumbnail }}">
             <h4>
               {{ recommendCtrl.showcase.title }}
-              <a href="#" data-toggle="collapse" data-target="#more-info" ng-hide="recommendCtrl.type === 'beer'">
+              <button class="btn btn-link" type="button" href="#" data-toggle="collapse" data-target="#more-info" ng-hide="recommendCtrl.type === 'beer'">
                 <i class="fa fa-info-circle"></i>
-              </a>
+              </button>
             </h4>
             <h5>
               <span ng-switch="recommendCtrl.type">
@@ -60,7 +60,7 @@
   </div>
 
   <p class="text-center">
-    <button class="btn btn-warning btn-lg btn-excellent">
+    <button class="btn btn-warning btn-lg btn-excellent" ng-click="recommendCtrl.insertMainRecommendation()">
       <i class="fa fa-thumbs-up"></i> Excellent Recommendation!
     </button>
   </p>
