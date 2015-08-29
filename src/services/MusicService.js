@@ -30,9 +30,10 @@
         };
 
         service.getTracksByGenre = function (genre) {
-            var deferred = $q.defer();
+            var deferred = $q.defer(),
+                genreEncode = encodeURIComponent(genre);
             console.log("Requesting tracks for genre ", genre);
-            $http.get('//api.spotify.com/v1/search?q=genre:' + encodeURIComponent(genre) + '&type=track').success(function (res) {
+            $http.get(MusicProxy + encodeURIComponent('https://api.spotify.com/v1/search?q=genre:' + genreEncode + '&type=track')).then(function (res) {
                 deferred.resolve(res);
             });
             return deferred.promise;

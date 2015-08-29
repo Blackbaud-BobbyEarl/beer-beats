@@ -109,21 +109,32 @@
         return genre;
     }
 
+    function getTracks (data, deferred) {
+        var length = data.tracks.items.length;
+        if (data.tracks.items) {
+            if (length > 5) {
+                    data.tracks.items = shuffleArray(data.tracks.items);
+                    data.tracks.items.splice(5, length - 5);
+                }
+            } 
+        deferred.resolve(data);
+    }
+    
     function CompareService(BeerService, MusicService, $q) {
         var compare = {};
 
         compare.getGenresForBeer = function (styleId) {
-            var deferred = $q.defer();
-            var genre = getGenreFromStyleId(styleId);
+            var deferred = $q.defer(),
+                genre = getGenreFromStyleId(styleId);
             MusicService.getTracksByGenre(genre).then(function (data) {
-                var length = data.tracks.items.length;
-                if (data.tracks.items) {
-                    if (length > 5) {
-                        data.tracks.items = shuffleArray(data.tracks.items);
-                        data.tracks.items.splice(5, length - 5);
-                    }
+                var length;
+                if (!data || !data.tracks || data.tracks.length === 0) {
+                    MusicService.search(genre).then(function (dataSearch) {
+                        getTracks(dataSearch, deferred);
+                    });
+                } else {
+                    getTracks(data, deferred);
                 }
-                deferred.resolve(data);
             });
             return deferred.promise;
         };

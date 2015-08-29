@@ -28,7 +28,7 @@
                             thumbnail: result.data.labels.large,
                             title: result.data.name,
                             subtitle: result.data.style.shortName,
-                            description: result[0].style.description
+                            description: result.data.style.description
                         };
                         CompareService.getGenresForBeer(result.data.style.id).then(function (result) {
                             var item = result.tracks.items[0];
