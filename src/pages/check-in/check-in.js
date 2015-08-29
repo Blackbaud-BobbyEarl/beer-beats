@@ -2,17 +2,71 @@
 (function () {
     'use strict';
 
-    function CheckInController($state, BeerService, MusicService) {
+    function CheckInController($scope, $state, $stateParams, BeerService, MusicService) {
         var vm = this;
 
         vm.searching = false;
-        vm.searchingNoResults = false;
-        vm.enjoying = 'beer';
+        vm.enjoying = $stateParams.type || 'beer';
+        vm.query = $stateParams.query;
         vm.error = '';
-        vm.query = '';
         vm.results = '';
+        vm.params = $stateParams;
 
         vm.search = function () {
+            $state.go('check-in', {
+                type: vm.enjoying,
+                query: vm.query
+            });
+        };
+
+        vm.recommend = function (id) {
+            $state.go('recommend', {
+                type: vm.enjoying,
+                id: id
+            });
+        };
+
+        $scope.$watch(
+            function enjoyingWatch() {
+                return vm.enjoying;
+            },
+            function enjoyingChange(newValue, oldValue) {
+                if (angular.isDefined(newValue) && newValue !== oldValue) {
+                    vm.query = '';
+                    vm.search();
+                }
+            }
+        );
+
+        function success(results) {
+            vm.searching = false;
+            vm.error = '';
+            vm.results = results;
+        }
+
+        function error(err) {
+            vm.searching = false;
+            vm.results = '';
+            vm.error = err;
+        }
+
+        function beerSuccess(results) {
+            success(results.data);
+        }
+
+        function songSuccess(results) {
+            success(results.tracks.items);
+        }
+
+        function beerError(err) {
+            error(err);
+        }
+
+        function songError(err) {
+            error(err);
+        }
+
+        if (vm.enjoying && vm.query) {
             vm.error = '';
             vm.results = '';
             vm.searching = true;
@@ -25,50 +79,15 @@
                     MusicService.search(vm.query).then(songSuccess, songError);
                 break;
             }
-        };
-
-        vm.recommend = function (id) {
-            $state.go('recommend', {
-                type: vm.enjoying,
-                id: id
-            });
-        };
-
-        function success(results) {
-            vm.searching = false;
-            vm.searchingNoResults = !angular.isArray(results) || results.length === 0;
-            vm.error = '';
-            vm.results = results;
-        }
-
-        function error(err) {
-            vm.searching = false;
-            vm.searchingNoResults = false;
-            vm.results = '';
-            vm.error = err;
-        }
-
-        function beerSuccess(results) {
-            success(results.data);
-        }
-
-        function songSuccess(results) {
-            success(results);
-        }
-
-        function beerError(err) {
-            error(err);
-        }
-
-        function songError(err) {
-            error(err);
         }
 
     }
 
 
     CheckInController.$inject = [
+        '$scope',
         '$state',
+        '$stateParams',
         'BeerService',
         'MusicService'
     ];

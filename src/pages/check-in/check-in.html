@@ -21,8 +21,8 @@
   {{ checkin.error }}
 </p>
 
-<p class="alert alert-info" ng-show="checkin.searchingNoResults">
-  Unable to locate any results.
+<p class="alert alert-info" ng-show="!checkin.searching && checkin.params.query && (!checkin.results || checkin.results.length === 0)">
+  Unable to locate any results for {{ checkin.params.query }}.
 </p>
 
 <div ng-switch="checkin.enjoying" class="checkin-results">
@@ -40,7 +40,7 @@
     </a>
   </div>
   <div ng-switch-when="song" class="list-group">
-    <a ng-repeat="track in checkin.results.tracks.items" href="" class="list-group-item" ng-click="checkin.recommend(track.id)">
+    <a ng-repeat="track in checkin.results" href="" class="list-group-item" ng-click="checkin.recommend(track.id)">
       <div class="media">
         <div class="media-left">
           <img class="media-object" alt="" ng-src="{{ track.album.images[2].url }}">
