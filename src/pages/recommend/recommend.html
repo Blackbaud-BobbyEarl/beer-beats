@@ -38,14 +38,14 @@
             <img class="img-circle img-thumbnail" ng-src="{{ recommendCtrl.showcase.thumbnail }}">
             <h4>
               {{ recommendCtrl.showcase.title }}
-              <button class="btn btn-link" type="button" href="#" data-toggle="collapse" data-target="#more-info" ng-hide="recommendCtrl.type === 'beer'">
+              <a href="" data-toggle="collapse" data-target="#more-info" ng-hide="recommendCtrl.type === 'beer'">
                 <i class="fa fa-info-circle"></i>
-              </button>
+              </a>
             </h4>
             <h5>
               <span ng-switch="recommendCtrl.type">
                 <span ng-switch-when="beer">{{ recommendCtrl.showcase.artist }}</span>
-                <span ng-switch-when="song" class="label label-info">{{ recommendCtrl.showcase.style }}</span>
+                <span ng-switch-when="song">{{ recommendCtrl.showcase.style }}</span>
               </span>
             </h5>
           </div>
@@ -66,6 +66,7 @@
   </p>
 
   <h3>Not your cup of <s class="text-muted">tea</s> beer?</h3>
+  <p class="text-muted">Try these other recommendations!</p>
   <div ng-switch="recommendCtrl.type">
     <div ng-switch-when="song" class="list-group">
       <a ng-repeat="beer in recommendCtrl.results" href="" class="list-group-item" ng-click="recommendCtrl.recommend(beer.id)">

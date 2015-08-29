@@ -1,8 +1,8 @@
-<h1>I am...</h1>
+<h1>I am enjoying a...</h1>
 <p>
   <div class="btn-group input-group-lg btn-group-justified">
-     <label class="btn btn-warning btn-lg" ng-model="checkin.enjoying" btn-radio="'song'">Listening to a song</label>
-     <label class="btn btn-warning btn-lg" ng-model="checkin.enjoying" btn-radio="'beer'">Drinking a beer</label>
+     <label class="btn btn-warning btn-lg" ng-model="checkin.enjoying" btn-radio="'song'"><i class="fa fa-music"></i><span class="hidden-xs"> Song</span></label>
+     <label class="btn btn-warning btn-lg" ng-model="checkin.enjoying" btn-radio="'beer'"><i class="fa fa-beer"></i><span class="hidden-xs">  Beer</span></label>
   </div>
 </p>
 
@@ -47,7 +47,7 @@
         </div>
         <div class="media-body">
           <h4 class="media-heading">{{ track.name }}</h4>
-          {{ track.artists[0].name }}
+          <small class="text-muted">{{ track.artists[0].name }}</small>
         </div>
       </div>
     </a>

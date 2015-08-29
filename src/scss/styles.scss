@@ -1,7 +1,7 @@
 
 $font-size-base: 16px;
 $color-bg: #c4d7df;
-$color-light-gray: #f5f5f5;
+$color-light-gray: #e2e2e2;
 
 $body-bg: $color-light-gray;
 $brand-primary: #44B3C2;
@@ -25,6 +25,8 @@ h1, h2, h3, h4, h5, h6 {
 #header {
     background-color: $brand-primary;
     margin: 0;
+    border: 0;
+    border-radius: 0;
 
     h1 {
         font-size: 1.3em;
@@ -90,6 +92,9 @@ h1, h2, h3, h4, h5, h6 {
         max-height: 66px;
         overflow: hidden;
     }
+    .media-heading {
+        margin-top: 5px;
+    }
 }
 
 .panel {
@@ -125,10 +130,13 @@ h1, h2, h3, h4, h5, h6 {
 .card {
     background-color: #fff;
     box-shadow: 0 2px 37px rgba(0,0,0,0.15);
-    border-radius: 0 0 5px 5px;
-    margin: 0 auto 35px;
-    max-width: 85%;
-    padding: 15px;
+    margin: 0 auto 20px;
+    padding: 20px;
+    position: relative;
+
+    .btn-link {
+        padding: 0;
+    }
 
     h3 {
       margin-top: 0;
@@ -137,16 +145,26 @@ h1, h2, h3, h4, h5, h6 {
     h5 {
       margin: 0;
     }
+
+    h4, h5 {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
 }
 
 .navbar-default .navbar-nav > li > a {
     color: #fff;
 }
 
-.card {
-  position: relative;
-}
-
 .btn-excellent {
   margin: 20px 0;
+}
+
+a.list-group-item:hover,
+a.list-group-item:focus,
+button.list-group-item:hover,
+button.list-group-item:focus {
+
 }
