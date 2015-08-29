@@ -1,55 +1,62 @@
-<h1>I am enjoying a...</h1>
-<p>
-  <div class="btn-group input-group-lg btn-group-justified">
-     <label class="btn btn-warning btn-lg" ng-model="checkin.enjoying" btn-radio="'song'"><i class="fa fa-music"></i><span class="hidden-xs"> Song</span></label>
-     <label class="btn btn-warning btn-lg" ng-model="checkin.enjoying" btn-radio="'beer'"><i class="fa fa-beer"></i><span class="hidden-xs">  Beer</span></label>
-  </div>
-</p>
-
-<div class="input-group input-group-lg" style="margin-bottom: 15px;">
-  <input type="text" class="form-control" placeholder="What {{ checkin.enjoying }}?" ng-model="checkin.query" ng-enter="checkin.search()">
-  <span class="input-group-btn">
-    <button class="btn btn-default btn-lg" type="button" ng-click="checkin.search()"><i class="fa fa-search"></i></button>
-  </span>
-</div>
-
-<p ng-show="checkin.searching">
-  <i class="fa fa-2x fa-spin fa-spinner"></i>
-</p>
-
-<p ng-if="checkin.error" class="alert alert-danger">
-  {{ checkin.error }}
-</p>
-
-<p class="alert alert-info" ng-show="!checkin.searching && checkin.params.query && (!checkin.results || checkin.results.length === 0)">
-  Unable to locate any results for {{ checkin.params.query }}.
-</p>
-
-<div ng-switch="checkin.enjoying" class="checkin-results">
-  <div ng-switch-when="beer" class="list-group">
-    <a ng-repeat="beer in checkin.results" href="" class="list-group-item" ng-click="checkin.recommend(beer.id)">
-      <div class="media">
-        <div class="media-left">
-          <img class="media-object" alt="" ng-src="{{ beer.labels.icon }}">
+<div id="check-in">
+    <div id="banner">
+        <h1>I am enjoying a...</h1>
+        <div class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <!--<div class="item active" style="background-image: url(img/slide1.jpg);"></div>
+                <div class="item" style="background-image: url(img/slide2.jpg);"></div>-->
+                <div class="item active" style="background-image: url(img/slide3.jpg);"></div>
+            </div>
         </div>
-        <div class="media-body">
-          <h4 class="media-heading">{{ beer.nameDisplay }}</h4>
-          <div data-ng-bind="beer.description" class="media-description" data-ellipsis></div>
+    </div>
+
+    <div id="check-in-form">
+        <div class="btn-group input-group-lg btn-group-justified">
+            <label class="btn btn-warning btn-lg" ng-model="checkin.enjoying" btn-radio="'song'"><i class="fa fa-music"></i><span class="hidden-xs"> Song</span></label>
+            <label class="btn btn-warning btn-lg" ng-model="checkin.enjoying" btn-radio="'beer'"><i class="fa fa-beer"></i><span class="hidden-xs">  Beer</span></label>
         </div>
-      </div>
-    </a>
-  </div>
-  <div ng-switch-when="song" class="list-group">
-    <a ng-repeat="track in checkin.results" href="" class="list-group-item" ng-click="checkin.recommend(track.id)">
-      <div class="media">
-        <div class="media-left">
-          <img class="media-object" alt="" ng-src="{{ track.album.images[2].url }}">
+        <div class="input-group input-group-lg" style="margin-bottom: 15px;">
+            <input type="text" class="form-control" placeholder="What {{ checkin.enjoying }}?" ng-model="checkin.query" ng-enter="checkin.search()">
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-lg" type="button" ng-click="checkin.search()"><i class="fa fa-search"></i></button>
+            </span>
         </div>
-        <div class="media-body">
-          <h4 class="media-heading">{{ track.name }}</h4>
-          <small class="text-muted">{{ track.artists[0].name }}</small>
+        <p ng-show="checkin.searching">
+            <i class="fa fa-2x fa-spin fa-spinner"></i>
+        </p>
+        <p ng-if="checkin.error" class="alert alert-danger">
+            {{ checkin.error }}
+        </p>
+        <p class="alert alert-info" ng-show="!checkin.searching && checkin.params.query && (!checkin.results || checkin.results.length === 0)">
+            Unable to locate any results for {{ checkin.params.query }}.
+        </p>
+        <div ng-switch="checkin.enjoying" class="checkin-results">
+            <div ng-switch-when="beer" class="list-group">
+                <a ng-repeat="beer in checkin.results" href="" class="list-group-item" ng-click="checkin.recommend(beer.id)">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" alt="" ng-src="{{ beer.labels.icon }}">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{ beer.nameDisplay }}</h4>
+                            <div data-ng-bind="beer.description" class="media-description" data-ellipsis></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div ng-switch-when="song" class="list-group">
+                <a ng-repeat="track in checkin.results" href="" class="list-group-item" ng-click="checkin.recommend(track.id)">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object" alt="" ng-src="{{ track.album.images[2].url }}">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{ track.name }}</h4>
+                            <small class="text-muted">{{ track.artists[0].name }}</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
-      </div>
-    </a>
-  </div>
+    </div>
 </div>
