@@ -17,7 +17,7 @@
                 templateUrl: 'pages/user/user.html'
             })
             .state('check-in', {
-                url: '/check-in',
+                url: '/check-in/:type/:query',
                 controller: 'CheckInController as checkin',
                 templateUrl: 'pages/check-in/check-in.html'
             })
