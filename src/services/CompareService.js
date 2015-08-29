@@ -64,6 +64,7 @@
             }
 
             return BeerService.getBeersByStyleId(styleId).then(function (result) {
+                console.log("getBeersForGenre:", result);
                 var beerList = result.data,
                     length = beerList.length;
                 if (beerList) {

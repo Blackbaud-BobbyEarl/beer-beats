@@ -16,9 +16,12 @@
 
         service.getArtistByTrackId = function (trackId) {
             var deferred = $q.defer();
+            var data = {};
             $http.get('//api.spotify.com/v1/tracks/' + trackId).success(function (res) {
+                data.track = res;
                 $http.get('//api.spotify.com/v1/artists/' + res.artists[0].id).success(function (res) {
-                    deferred.resolve(res);
+                    data.artist = res;
+                    deferred.resolve(data);
                 });
             });
             return deferred.promise;

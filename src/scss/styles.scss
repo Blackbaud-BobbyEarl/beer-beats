@@ -4,8 +4,8 @@ $color-bg: #c4d7df;
 $color-light-gray: #f5f5f5;
 
 $body-bg: $color-light-gray;
-$brand-primary: #6a91ab;
-$brand-warning: #d55c3d;
+$brand-primary: #44B3C2;
+$brand-warning: #E45641;
 
 $navbar-default-bg: #fff;
 
@@ -13,7 +13,7 @@ $navbar-default-bg: #fff;
 @import '../../bower_components/font-awesome/scss/font-awesome';
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: $font-family-serif;
+    font-family: "Oswald", sans-serif;
     color: $brand-warning;
 }
 
@@ -107,6 +107,57 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+.chosen-item {
+    background-color: #fff;
+    box-shadow: 0 2px 37px rgba(0,0,0,0.15);
+    border-radius: 0 0 5px 5px;
+    max-width: 60%;
+    margin: -20px auto 15px;
+    padding: 15px;
+    text-align: center;
+
+    .media-left {
+        display: block;
+        margin: 0 0 10px;
+
+        > .media-object {
+            margin: 0 auto;
+            display: block;
+        }
+    }
+
+    .media-heading {
+        margin-top: 5px;
+    }
+}
+
 .navbar-default .navbar-nav > li > a {
     color: #fff;
+}
+
+.thumbnail-showcase {
+    border: 0;
+    text-align: center;
+
+    > .img-circle {
+        box-shadow: 0 2px 79px rgba(0,0,0,0.1);
+        border: 6px solid #fff;
+    }
+    > .caption {
+        > h1 {
+            margin-top: 5px;
+        }
+    }
+}
+
+.media {
+    .media-object {
+        border: 3px solid #fff;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.25);
+    }
+}
+
+#recommend-pane > h3 {
+    text-align: center;
+    margin: 30px 0 20px;
 }

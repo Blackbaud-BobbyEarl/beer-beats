@@ -1,32 +1,61 @@
-<p ng-show="recommendCtrl.error" class="alert alert-danger">
-  {{ recommandCtrl.error }}
-</p>
+<div id="recommend-pane">
+    <p ng-show="recommendCtrl.error" class="alert alert-danger">
+      {{ recommendCtrl.error }}
+    </p>
 
-<div ng-switch="recommendCtrl.type">
-  <div ng-switch-when="song" class="list-group">
-    <a ng-repeat="beer in recommendCtrl.results" href="" class="list-group-item" ng-click="recommendCtrl.recommend(beer.id)">
-      <div class="media">
-        <div class="media-left">
-          <img class="media-object" alt="" ng-src="{{ beer.labels.icon }}">
+    <!-- CHOSEN THING -->
+    <div ng-if="recommendCtrl.chosenItem" class="chosen-item">
+        <div class="media">
+            <div class="media-left">
+              <img class="media-object" alt="" ng-src="{{ recommendCtrl.chosenItem.thumbnail }}">
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">{{ recommendCtrl.chosenItem.title }}</h4>
+              <small class="text-muted">{{ recommendCtrl.chosenItem.subtitle }}</small>
+            </div>
         </div>
-        <div class="media-body">
-          <h4 class="media-heading">{{ beer.nameDisplay }}</h4>
-          {{ beer.description }}
+    </div>
+
+    <h3>We recommend...</h3>
+
+    <!-- RECOMMENDED THING -->
+    <div ng-if="recommendCtrl.showcase" class="thumbnail thumbnail-showcase">
+        <img class="img-circle" ng-src="{{ recommendCtrl.showcase.thumbnail }}">
+        <div class="caption">
+            <h1>{{recommendCtrl.showcase.title}}</h1>
+            <p><span class="label label-warning">{{recommendCtrl.showcase.style}}</span></p>
+            <p>{{recommendCtrl.showcase.description}}</p>
+            <p><a href="#/check-in" type="button" class="btn btn-default btn-block"><i class="fa fa-arrow-left"></i> Back to checkin</a></p>
         </div>
+    </div>
+
+    <h3>More Recommendations</h3>
+    <div ng-switch="recommendCtrl.type">
+      <div ng-switch-when="song" class="list-group">
+        <a ng-repeat="beer in recommendCtrl.results" href="" class="list-group-item" ng-click="recommendCtrl.recommend(beer.id)">
+          <div class="media">
+            <div class="media-left">
+              <img class="media-object" alt="" ng-src="{{ beer.labels.icon }}">
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">{{ beer.nameDisplay }}</h4>
+              {{ beer.description }}
+            </div>
+          </div>
+        </a>
       </div>
-    </a>
-  </div>
-  <div ng-switch-when="beer" class="list-group">
-    <a ng-repeat="track in recommendCtrl.results.tracks.items" href="" class="list-group-item" ng-click="recommendCtrl.recommend(track.id)">
-      <div class="media">
-        <div class="media-left">
-          <img class="media-object" alt="" ng-src="{{ track.album.images[2].url }}">
-        </div>
-        <div class="media-body">
-          <h4 class="media-heading">{{ track.name }}</h4>
-          {{ track.artists[0].name }}
-        </div>
+      <div ng-switch-when="beer" class="list-group">
+        <a ng-repeat="track in recommendCtrl.results.tracks.items" href="" class="list-group-item" ng-click="recommendCtrl.recommend(track.id)">
+          <div class="media">
+            <div class="media-left">
+              <img class="media-object" alt="" ng-src="{{ track.album.images[2].url }}">
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">{{ track.name }}</h4>
+              {{ track.artists[0].name }}
+            </div>
+          </div>
+        </a>
       </div>
-    </a>
-  </div>
+    </div>
 </div>
