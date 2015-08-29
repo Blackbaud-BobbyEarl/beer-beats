@@ -58,7 +58,7 @@
 
     angular.module('singingbeer')
         .factory('BeerService', BeerService)
-        .constant('BeerApiKey', '597579363abf32fc0726a6478cc30067')
+        .constant('BeerApiKey', '9ee1afc5287af1ef31776b320af5fab9')
         .constant('BeerApiUrl', 'http://api.brewerydb.com/v2/')
         .constant('BeerProxy', 'http://developer.blackbaud.com/proxy/?mode=native&url=');
 }());
