@@ -3,6 +3,7 @@
     <head>
         <title>Singing Beer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link href='https://fonts.googleapis.com/css?family=Oswald:400,300|Open+Sans:400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="css/styles.css"/>
         <script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
         <script src="js/libs.js"></script>
@@ -12,7 +13,7 @@
 
         <div id="app">
 
-            <nav class="navbar navbar-default">
+            <nav id="header" class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-beer" aria-expanded="false">
@@ -21,7 +22,12 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">BEER</a>
+                        <a class="navbar-brand" href="#">
+                            <span class="fa-stack">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-beer fa-stack-1x fa-inverse"></i>
+                            </span> Brewtune
+                        </a>
                     </div>
 
                     <div class="collapse navbar-collapse" id="navbar-beer">
@@ -49,18 +55,11 @@
                 </div>
             </nav>
 
-
             <div id="content">
                 <div class="container">
                     <div ui-view></div>
                 </div>
             </div>
-
-            <footer id="footer">
-                <div class="container">
-                    footer
-                </div>
-            </footer>
 
         </div>
     </body>
