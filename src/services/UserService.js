@@ -2,21 +2,19 @@
 (function () {
     'use strict';
 
-    function UserService($http, $q) {
-        var service = {},
-            internalUser;
+    function UserService(localStorageService) {
+        var service = {};
         service.setUser = function (user) {
-            internalUser = user;
+            localStorageService.set('user', user);
         };
         service.getUser = function () {
-            return internalUser;
+            return localStorageService.get('user');
         };
         return service;
     }
 
     UserService.$inject = [
-        '$http',
-        '$q'
+        'localStorageService'
     ];
 
     angular.module('singingbeer')

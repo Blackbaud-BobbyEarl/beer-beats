@@ -25,13 +25,25 @@
         //Parse.initialize()
     }
 
+    function Run($state, UserService) {
+        if (!UserService.getUser()) {
+            $state.go('login');
+        }
+    }
+
     Config.$inject = [
         '$locationProvider',
         '$stateProvider',
         '$urlRouterProvider'
     ];
 
-    angular.module('singingbeer', ['ui.bootstrap', 'ui.router', 'singingbeer.templates'])
+    Run.$inject = [
+        '$state',
+        'UserService'
+    ];
+
+    angular.module('singingbeer', ['ui.bootstrap', 'ui.router', 'singingbeer.templates', 'LocalStorageModule'])
         .config(Config)
-        .controller('MainController', angular.noop);
+        .controller('MainController', angular.noop)
+        .run(Run);
 }());
