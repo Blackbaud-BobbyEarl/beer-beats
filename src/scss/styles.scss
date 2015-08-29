@@ -1,0 +1,26 @@
+@import '../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap';
+@import '../../bower_components/font-awesome/scss/font-awesome';
+
+body {
+    font-size: 16px;
+}
+
+#content {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+#header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+
+    h1 {
+        font-size: 1.3em;
+        font-weight: normal;
+    }
+}
+
+.panel-spotify {
+
+}
