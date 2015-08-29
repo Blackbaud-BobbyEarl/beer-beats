@@ -2,20 +2,20 @@
 (function () {
     'use strict';
 
-    function LoginPageController($location, MusicService) {
+    function LoginPageController($location, UserService) {
         var vm = this;
-        vm.connect = function () {
-            console.log("Connecting...");
-            MusicService.connect().then(function (data) {
-                console.log("Successfully connected!", data);
-                $location.path('/beer');
+        vm.login = function () {
+            OAuth.popup('facebook').done(function (result) {
+                result.me().done(function (data) {
+                    UserService.setUser(data);
+                });
             });
         };
     }
 
     LoginPageController.$inject = [
         '$location',
-        'MusicService'
+        'UserService'
     ];
 
     angular.module('singingbeer')

@@ -21,6 +21,8 @@
                 controller: 'BeerMatchController as beerMatchCtrl',
                 templateUrl: 'pages/beer/beermatch.html'
             });
+        OAuth.initialize('fMP572zzDgGOOnxYEMMFKwRo5SI');
+        //Parse.initialize()
     }
 
     Config.$inject = [
