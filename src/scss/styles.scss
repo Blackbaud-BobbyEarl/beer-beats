@@ -22,7 +22,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #content {
-    padding-bottom: 20px;
+  background-color: rgba(255, 255, 255, .3);
+  padding-bottom: 20px;
 }
 
 nav {
@@ -48,7 +49,6 @@ nav .fa-headphones {
 }
 
 .avatar {
-  background: rgba(251, 251, 251, .6);
   display: block;
   padding: 7px;
 }
@@ -127,54 +127,6 @@ nav .fa-headphones {
 .btn-excellent {
   margin: 20px 0;
 }
-
-a.list-group-item:hover,
-a.list-group-item:focus,
-button.list-group-item:hover,
-button.list-group-item:focus {
-
-}
-
-
-#banner {
-    height: 300px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 1;
-
-    .carousel {
-        height: 100%;
-    }
-
-    h1 {
-        position: absolute;
-        z-index: 999;
-        color: #fff;
-        padding-left: 15px;
-        text-shadow: 1px 0 16px rgba(0,0,0,1);
-        margin-top: 0;
-        padding-top: 40px;
-    }
-
-    .carousel-inner {
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        z-index: 1;
-
-        .item {
-            background-size: cover;
-            background-position: center center;
-            height: 100%;
-        }
-    }
-}
-
 
 #check-in {
     padding-top: 50px;
