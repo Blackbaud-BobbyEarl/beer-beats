@@ -23,10 +23,11 @@
         <img class="img-circle" ng-src="{{ recommendCtrl.showcase.thumbnail }}">
         <div class="caption">
             <h1>{{recommendCtrl.showcase.title}}</h1>
-            <p><span class="label label-warning">{{recommendCtrl.showcase.style}}</span></p>
-            <p>{{recommendCtrl.showcase.description}}</p>
+            <p><span class="label label-primary">{{recommendCtrl.showcase.style}}</span></p>
+            <p class="description">{{recommendCtrl.showcase.description}}</p>
             <p>
-                <a href="#/check-in" type="button" class="btn btn-default btn-block"><i class="fa fa-arrow-left"></i> Back to checkin</a>
+                <a href="#/check-in" type="button" class="btn btn-warning btn-block"><i class="fa fa-thumbs-up"></i> Call to action!</a>
+                <a href="#/check-in" type="button" class="btn btn-link btn-block"><i class="fa fa-arrow-left"></i> Back to checkin</a>
             </p>
         </div>
     </div>
