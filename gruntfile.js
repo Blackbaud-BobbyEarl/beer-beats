@@ -2,7 +2,7 @@
 
 module.exports = function (grunt) {
     'use strict';
-    
+
     grunt.initConfig({
         buildPath: grunt.option('buildpath') || 'build',
         concat_sourcemap: {
@@ -38,6 +38,13 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: 'src',
                     src: ['index.html'],
+                    dest: '<%= buildPath %>/'
+                },
+                {
+                    expand: true,
+                    dot: true,
+                    cwd: 'bower_components/font-awesome',
+                    src: ['fonts/*.*'],
                     dest: '<%= buildPath %>/'
                 }]
             }
@@ -83,14 +90,14 @@ module.exports = function (grunt) {
             }
         }
     });
-    
+
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-concat-sourcemap');
     grunt.loadNpmTasks('grunt-html2js');
-    
+
     grunt.registerTask('default', ['html2js', 'concat_sourcemap', 'sass', 'copy']);
     grunt.registerTask('build', ['default']);
     grunt.registerTask('buildfromsrc', ['copy:dist', 'build']);
