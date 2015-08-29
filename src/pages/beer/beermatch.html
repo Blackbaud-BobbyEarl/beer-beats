@@ -1,3 +1,10 @@
 <div>
     Beer Match Page
+    <div ng-repeat="style in beerMatchCtrl.styles">
+        <div>Id: {{style.id}}</div>
+        <div>Name: {{style.name}}</div>
+        <div>Description: {{style.description}}</div>
+        <div>CategoryId: {{style.categoryId}}</div>
+        <div>Category: {{style.category}}</div>
+    </div>
 </div>
