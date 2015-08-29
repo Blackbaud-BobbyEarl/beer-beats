@@ -18,12 +18,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #content {
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 #header {
     background-color: $brand-primary;
+    margin: 0;
 
     h1 {
         font-size: 1.3em;
@@ -43,6 +44,27 @@ h1, h2, h3, h4, h5, h6 {
         .icon-bar {
             background-color: #fff;
         }
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: transparent;
+        }
+    }
+
+    .navbar-collapse {
+        background-color: darken($brand-primary, 10%);
+        border: 0;
+        box-shadow: none;
+    }
+
+    .nav > li > a.avatar {
+      padding: 10px 15px;
+
+      img {
+        max-height:30px;
+        width:auto;
+        vertical-align:middle;
+      }
     }
 
 }
@@ -75,14 +97,4 @@ h1, h2, h3, h4, h5, h6 {
              > .panel-title {}
          }
     }
-}
-
-.nav > li > a.avatar {
-  padding: 10px 15px;
-
-  img {
-    max-height:30px;
-    width:auto;
-    vertical-align:middle;
-  }
 }
