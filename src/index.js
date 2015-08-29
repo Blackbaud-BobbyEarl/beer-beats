@@ -22,7 +22,7 @@
                 templateUrl: 'pages/beer/beermatch.html'
             });
         OAuth.initialize('fMP572zzDgGOOnxYEMMFKwRo5SI');
-        //Parse.initialize()
+        Parse.initialize("CoNi5s1aee6KJlaNZ1YiP0oQKjSWid1czX2vYtUT", "rh46bhFYE9ht50Ld0tYfWzNsho5uPNXdVqzGGF6J");
     }
 
     function Run($state, UserService) {
