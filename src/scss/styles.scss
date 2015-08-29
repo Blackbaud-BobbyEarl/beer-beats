@@ -53,9 +53,21 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .navbar-collapse {
-        background-color: darken($brand-primary, 10%);
         border: 0;
         box-shadow: none;
+    }
+
+    li > a {
+      color: lighten($brand-primary, 35%);
+    }
+
+    li.active > a {
+        background-color: darken($brand-primary, 10%);
+    }
+
+    li > a:focus,
+    li > a:hover {
+      color: lighten($brand-primary, 50%);
     }
 
     .nav > li > a.avatar {
