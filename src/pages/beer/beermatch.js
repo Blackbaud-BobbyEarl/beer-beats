@@ -4,8 +4,8 @@
     function BeerMatchController(BeerService) {
         var vm = this;
         
-        BeerService.getBeerStyles().then(function (result) {
-            vm.styles = result.data;
+        BeerService.getBeersByStyleId(21).then(function (result) {
+            vm.beers = result.data;
         });
     }
     

@@ -2,23 +2,38 @@ angular.module('singingbeer.templates', []).run(['$templateCache', function($tem
     $templateCache.put('pages/beer/beermatch.html',
         '<div>\n' +
         '    Beer Match Page\n' +
-        '    <div ng-repeat="style in beerMatchCtrl.styles">\n' +
-        '        <div>Id: {{style.id}}</div>\n' +
-        '        <div>Name: {{style.name}}</div>\n' +
-        '        <div>Description: {{style.description}}</div>\n' +
-        '        <div>CategoryId: {{style.categoryId}}</div>\n' +
-        '        <div>Category: {{style.category}}</div>\n' +
+        '    <div ng-repeat="beer in beerMatchCtrl.beers">\n' +
+        '        <div>Id: {{beer.id}}</div>\n' +
+        '        <div>Name: {{beer.name}}</div>\n' +
+        '        <div>Description: {{beer.description}}</div>\n' +
+        '        <div>Style: {{beer.style}}</div>\n' +
+        '        <div>IBU: {{beer.ibu}}</div>\n' +
         '    </div>\n' +
         '</div>');
     $templateCache.put('pages/login/login.html',
         '<div class="panel panel-default panel-spotify">\n' +
         '    <div class="panel-heading">\n' +
-        '        <h4 class="panel-title">Connect your Spotify account</h4>\n' +
+        '        <h4 class="panel-title">Login with your Facebook account</h4>\n' +
         '    </div>\n' +
         '    <div class="panel-body">\n' +
-        '        <button class="btn btn-lg btn-block btn-primary" ng-click="welcome.connect()">\n' +
-        '            <i class="fa fa-spotify"></i> Connect\n' +
+        '        <button class="btn btn-lg btn-block btn-primary" ng-click="welcome.login()">\n' +
+        '            <i class="fa fa-facebook"></i> Login\n' +
         '        </button>\n' +
+        '    </div>\n' +
+        '</div>\n' +
+        '');
+    $templateCache.put('pages/search-music/search-music.html',
+        '<div class="panel panel-default panel-spotify">\n' +
+        '    <div class="panel-heading">\n' +
+        '        <h4 class="panel-title">Search Music</h4>\n' +
+        '    </div>\n' +
+        '    <div class="panel-body">\n' +
+        '        <div class="form-group">\n' +
+        '            <input type="text" class="form-control">\n' +
+        '            <button class="btn btn-lg btn-block btn-primary" ng-click="music.search()">\n' +
+        '                <i class="fa fa-spotify"></i> Search\n' +
+        '            </button>\n' +
+        '        </div>\n' +
         '    </div>\n' +
         '</div>\n' +
         '');
