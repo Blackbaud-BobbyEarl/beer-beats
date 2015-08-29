@@ -13,6 +13,7 @@ module.exports = function (grunt) {
             libs: {
                 files: {
                     '<%= buildPath %>/js/libs.js': [
+                        'bower_components/oauth-js/dist/oauth.min.js',
                         'bower_components/jquery/dist/jquery.js',
                         'bower_components/bootstrap/dist/js/bootstrap.min.js',
                         'bower_components/angular/angular.js',
