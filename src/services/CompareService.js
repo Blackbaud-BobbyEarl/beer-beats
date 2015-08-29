@@ -36,7 +36,14 @@
         var compare = {};
         
         compare.getBeersForGenre = function(genre) {
-            var styleId = getStyleIdFromGenre(genre);
+            var styleId;
+            
+            if (genre && genre.length > 0) {
+                styleId = getStyleIdFromGenre(genre[0]);
+            } else {
+                styleId = Math.floor(Math.random() * (170)) + 1;
+            }
+            
             return BeerService.getBeersByStyleId(styleId).then(function (result) {
                 var beerList = result.data,
                     length = beerList.length;
