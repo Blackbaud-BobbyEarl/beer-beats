@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmls="http://www.w3.org/1999/xhtml" ng-app="singingbeer">
+    <head>
+        <title>beer-beats</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link href='https://fonts.googleapis.com/css?family=Oswald:400,300|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+        <script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+        <script src="js/libs.js"></script>
+        <script src="js/app.js"></script>
+    </head>
+    <body ng-controller="MainController as mainCtrl">
+
+        <div id="app">
+          <div id="nav-wrapper">
+            <div class="container">
+              <div class="col-sm-12">
+                <nav class="clearfix">
+                  <h1 class="pull-left">
+                    <a ui-sref="check-in">
+                      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAB9CAYAAAAlb2jcAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgTWFjaW50b3NoIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjgwODQ2Q0ZENDY5MjExRTU5MjBDQTk0MEVGMDJFMkNDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjgwODQ2Q0ZFNDY5MjExRTU5MjBDQTk0MEVGMDJFMkNDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ODA4NDZDRkI0NjkyMTFFNTkyMENBOTQwRUYwMkUyQ0MiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6ODA4NDZDRkM0NjkyMTFFNTkyMENBOTQwRUYwMkUyQ0MiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6cb6o9AAAO0UlEQVR42uxd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"/>
+                    </a>
+                  </h1>
+                  <div class="pull-right">
+                    <div ng-show="mainCtrl.user.name" class="dropdown">
+                      <a href="#user-dropdown" ng-click="$event.preventDefault()" class="avatar dropdown-toggle" data-toggle="dropdown">
+                        <img ng-src="{{ mainCtrl.user.avatar }}" class="img-circle" />
+                        <span class="hidden-xs">{{ mainCtrl.user.name }}</span>
+                        <span class="caret"></span>
+                      </a>
+                      <ul id="user-dropdow" class="dropdown-menu">
+                        <li>
+                          <a ui-sref="user">My Profile</a>
+                        </li>
+                        <li>
+                          <a href="#" ng-click="mainCtrl.logout()">Logout</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+
+          <div id="content">
+            <div class="container">
+              <div ui-view></div>
+            </div>
+          </div>
+
+      </div>
+  </body>
+</html>
